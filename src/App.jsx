@@ -7,18 +7,28 @@ import Login from './components/Pages/Login';
 
 
 const App = () => {
+  const user = null;
+
   return (
     <>
-      <Routes>
-        <Route index element={<Register />} />
-        <Route path='/login'>
+    <Routes>
+      {
+        !user ? (
+          <>
           <Route index element={<Login />} />
-        </Route>
-        {/* <Route index element={<Home />} /> */}
-        <Route path='*' element={<h1>Error 404</h1>} />
-      </Routes>
-    </>
-  );
-}
+          <Route path='/register'>
+            <Route index element={<Register />} />
+          </Route>
+          </>
+        ) : (
+          <Route index element={<Home />} />
+          )
+      }
 
-export default App;
+      <Route path='*' element={<h1>Error 404</h1>} />
+    </Routes>
+    </>
+    );
+  }
+  
+  export default App;
