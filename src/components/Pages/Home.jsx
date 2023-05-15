@@ -5,25 +5,32 @@ import PostsContext from '../../context/PostsContext'
 
 
 const Home = () => {
-    const {posts} = useContext(PostsContext)
+    const { posts } = useContext(PostsContext)
 
-
-    return ( 
+    return (
         <>
-        <h1>Home</h1>
-        <div>
-        
-        {
-            posts.map(post => 
-                <PostCard 
-                key={post.id}
-                data={post}
-                />
-                )
-            }
+            <h1>Home</h1>
+            <div>
+
+                {
+                    !posts && (<p>Loading...</p>)
+                }
+                {
+                    posts && posts.map(post =>
+                        <PostCard
+                            key={post.id}
+                            data={post}
+                        />
+                    )
+                }
+                {
+                    posts && posts.length === 0 && (
+                        <p>No posts</p>
+                    )
+                }
             </div>
-            </>
-            )
-        }
-        
-        export default Home;
+        </>
+    )
+}
+
+export default Home;

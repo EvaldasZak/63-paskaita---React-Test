@@ -7,8 +7,8 @@ const Login = () => {
     const { users, setCurrentUser } = useContext(UsersContext)
     const navigate = useNavigate();
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('u@u.com');
+    const [password, setPassword] = useState('password');
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);

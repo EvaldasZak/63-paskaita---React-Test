@@ -8,7 +8,7 @@ const POSTS_ACTION_TYPE = {
 }
 
 const reducer = (state, action) => {
-    switch (action.type){
+    switch (action.type) {            
         case POSTS_ACTION_TYPE.GET:
             return action.data
         case POSTS_ACTION_TYPE.ADD:
@@ -23,17 +23,24 @@ const reducer = (state, action) => {
 
 const PostsProvider = ({children}) => {
 
-    const [posts, setPosts] = useReducer(reducer, [])
+    const [posts, setPosts] = useReducer(reducer, null)
 
     useEffect(() => {
-        fetch('http://localhost:8080/posts')
-        .then(res => res.json())
-        .then(data => {
-            setPosts({
-                type: POSTS_ACTION_TYPE.GET,
-                data: data
-            })
-        })
+        const fetchData = async () => {
+            fetch('http://localhost:8080/posts')
+              .then(res => res.json())
+              .then(data => {
+                setPosts({
+                  type: POSTS_ACTION_TYPE.GET,
+                  data: data
+                });
+              })
+              .catch(error => {
+                // Handle the error
+              });
+          };
+        
+            fetchData()
     }, [])
 
     return ( 
