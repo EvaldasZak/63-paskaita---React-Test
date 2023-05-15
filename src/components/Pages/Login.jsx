@@ -4,14 +4,14 @@ import { useNavigate, Link } from 'react-router-dom'
 import UsersContext from '../../context/UsersContext'
 
 const Login = () => {
-    const { users, setCurrentUser, currentUser } = useContext(UsersContext)
+    const { users, setCurrentUser } = useContext(UsersContext)
     const navigate = useNavigate();
 
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleUsernameChange = (e) => {
-        setUsername(e.target.value);
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
     };
 
     const handlePasswordChange = (e) => {
@@ -21,21 +21,27 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const logedInUser = users.find(user => username === user.email && password === user.password)
+        if (email.length < 3) {
+            alert('Fill in email address');
+            return;
+          }
+        if (password.length < 1) {
+            alert('Fill in password');
+            return;
+          }
+
+
+        const logedInUser = users.find(user => email === user.email && password === user.password)
         if (logedInUser) {
             setCurrentUser(logedInUser)
             navigate('/')
 
-            setUsername('');
+            setEmail('');
             setPassword('');
         } else {
             setPassword('');
-            alert('Login unsuccessful!');
+            alert('User with these credentials is not found!');
         }
-
-        // Perform login logic here
-        // You can make an API request to authenticate the user or handle it as per your requirements
-
 
     };
 
@@ -44,8 +50,8 @@ const Login = () => {
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Username:</label>
-                    <input type="text" value={username} onChange={handleUsernameChange} />
+                    <label>Email:</label>
+                    <input type="text" value={email} onChange={handleEmailChange} />
                 </div>
                 <div>
                     <label>Password:</label>

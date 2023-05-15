@@ -27,6 +27,17 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (email.length < 3) {
+      alert('Fill in email address');
+      return;
+    }
+
+    if (password.length < 1 || confirmPassword.length < 1) {
+      alert('Fill in password');
+      return;
+    }
+
+
     if (password !== confirmPassword) {
       alert('Passwords do not match!');
       return;
@@ -37,6 +48,7 @@ const Register = () => {
       email,
       password
     }
+    
     if (newUser.email !== users.find(user => user.email === email)?.email) {
       setUsers({
         type: USERS_ACTION_TYPE.ADD,
@@ -45,7 +57,7 @@ const Register = () => {
       setCurrentUser(newUser)
       navigate('/')
     } else {
-      alert('This user has account on server!');
+      alert('This user is already registered, login!');
     }
   };
 
