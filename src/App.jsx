@@ -12,7 +12,13 @@ import Add from './components/Pages/Add';
 
 import Header from './components/Organisms/Header';
 import Footer from './components/Organisms/Footer';
+import styled from 'styled-components';
 
+// Styled component
+const AppContainer = styled.div`
+  height: 50vh;
+  padding: 0px 30px;
+`;
 
 const App = () => {
   const { currentUser } = useContext(UsersContext);
@@ -20,7 +26,10 @@ const App = () => {
   return (
     <>
       <Header user={currentUser}/>
+
+        <AppContainer>
       <Routes>
+
         {
           !currentUser ? (
             <>
@@ -41,6 +50,8 @@ const App = () => {
 
         <Route path='*' element={<h1>Error 404</h1>} />
       </Routes>
+      </AppContainer>
+
       <Footer/>
     </>
     );

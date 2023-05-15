@@ -1,8 +1,66 @@
 import React, { useState, useContext } from 'react';
-
 import {useNavigate} from 'react-router-dom'
+import styled from 'styled-components';
 
 import PostsContext from '../../context/PostsContext'
+
+const AddContainer = styled.div`
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 20px;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    div {
+      margin-bottom: 1rem;
+
+      label {
+        font-weight: bold;
+      }
+
+      input {
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 100%;
+      }
+
+      textarea {
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 100%;
+        min-height: 80px;
+      }
+    }
+
+    button[type='submit'] {
+      padding: 0.5rem 1rem;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  }
+
+  a {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+  }
+`;
 
 const Add = () => {
   const {posts, setPosts, POSTS_ACTION_TYPE} = useContext(PostsContext)
@@ -42,6 +100,7 @@ const Add = () => {
   };
   
   return (
+    <AddContainer>
     <div>
     <h2>Add a post</h2>
     <form onSubmit={handleSubmit}>
@@ -56,6 +115,7 @@ const Add = () => {
     <button type="submit">Add a post</button>
     </form>
     </div>
+    </AddContainer>
     );
   };
   
