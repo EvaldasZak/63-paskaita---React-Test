@@ -1,18 +1,12 @@
+import React, { useContext } from 'react';
+
 import PostCard from "../Organisms/PostCard";
+import PostsContext from '../../context/PostsContext'
+
 
 const Home = () => {
-    let posts = [
-        {
-            "id": 1,
-            "title": "Post 1",
-            "body": "Body 1"
-          },
-          {
-            "id": 2,
-            "title": "Post 2",
-            "body": "Body 2"
-          }
-    ];
+    const {posts} = useContext(PostsContext)
+
 
     return ( 
         <>

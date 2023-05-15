@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = ({user}) => {
     
@@ -11,20 +12,20 @@ const Header = ({user}) => {
         {!user ? (
             <>
             <li>
-            <a href="/">Login</a>
+                <Link to="/">Login</Link>
             </li>
             <li>
-            <a href="/register">Register</a>
+                <Link to="/register">Register</Link>
             </li>
             </>
             ) : 
             (                
                 <>
                 <li>
-                <a href="/home">Home</a>
+                    <Link to="/">Home</Link>
                 </li>
                 <li>
-                <a href="/add">Add</a>
+                    <Link to="/add">Add</Link>
                 </li>
                 </>
                 )
