@@ -4,9 +4,11 @@ import { useContext } from 'react';
 
 import UsersContext from './context/UsersContext';
 
-import Home from './components/Pages/Home';
 import Register from './components/Pages/Register';
 import Login from './components/Pages/Login';
+
+import Home from './components/Pages/Home';
+import Add from './components/Pages/Add';
 
 import Header from './components/Organisms/Header';
 import Footer from './components/Organisms/Footer';
@@ -22,13 +24,18 @@ const App = () => {
         {
           !currentUser ? (
             <>
-            <Route index element={<Login />} />
-            <Route path='/register'>
-              <Route index element={<Register />} />
-            </Route>
+              <Route index element={<Login />} />
+              <Route path='/register'>
+                <Route index element={<Register />} />
+              </Route>
             </>
           ) : (
-            <Route index element={<Home />} />
+            <>
+              <Route index element={<Home />} />
+               <Route path='/add'>
+                <Route index element={<Add />} />
+               </Route>
+            </>
             )
         }
 
